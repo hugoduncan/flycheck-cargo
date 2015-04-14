@@ -30,9 +30,7 @@ if it is not modified, i.e. after it has been saved."
 
 See URL `http://www.rust-lang.org'."
   :command ("cargo"
-            (option-flag "test" flycheck-cargo-check-tests)
-            (eval (or flycheck-cargo-crate-root
-                      (flycheck-substitute-argument 'source-inplace 'cargo))))
+            (eval (if flycheck-cargo-check-tests "test" "build")))
   :error-patterns
   ((error line-start (file-name) ":" line ":" column ": "
           (one-or-more digit) ":" (one-or-more digit) " error: "
